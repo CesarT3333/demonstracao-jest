@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th>CEP</th>
+      <th>Cidade</th>
+      <th>Logradouro</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let endereco of enderecos">
+      <td>{{ endereco.cep}}</td>
+      <td>{{ endereco.cidade}}</td>
+      <td>{{ endereco.logradouro}}</td>
+    </tr>
+  </tbody>
+</table>

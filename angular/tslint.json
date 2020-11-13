@@ -58,6 +58,8 @@
       "ignore-params"
     ],
     "no-non-null-assertion": true,
+    "variable-name": false,
+    "no-angle-bracket-type-assertion": false,
     "no-redundant-jsdoc": true,
     "no-switch-case-fall-through": true,
     "no-use-before-declare": true,

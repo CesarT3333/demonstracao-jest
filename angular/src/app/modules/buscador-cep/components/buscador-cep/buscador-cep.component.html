@@ -1,0 +1,10 @@
+<form [formGroup]="formBuscadorCep"
+      (ngSubmit)="onFormSubmit()">
+
+  <input type="text"
+         placeholder="Informe um cep válido"
+         formControlName="cep" />
+
+  <button type="submit">Buscar</button>
+
+</form>
