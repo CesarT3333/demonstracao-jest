@@ -1,3 +1,9 @@
+<app-botao-navegacao textoBotao="voltar"
+                     (navegar)="onNavegar()">
+</app-botao-navegacao>
+
+<br />
+
 <form [formGroup]="formBuscadorCep"
       (ngSubmit)="onFormSubmit()">
 
@@ -6,6 +12,8 @@
          formControlName="cep" />
 
   <button id="btnSubmit"
-          type="submit">Buscar</button>
+          type="submit">
+    Buscar
+  </button>
 
 </form>

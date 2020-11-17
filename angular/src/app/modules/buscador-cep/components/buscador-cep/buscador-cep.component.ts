@@ -1,5 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 import { map } from 'rxjs/operators';
 
@@ -15,11 +16,16 @@ export class BuscadorCepComponent
 
   constructor(
     private viaCepService: ViaCepService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
     this.criaFormulario();
+  }
+
+  onNavegar(): void {
+    this.location.back();
   }
 
   onFormSubmit(): void {

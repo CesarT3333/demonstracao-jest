@@ -5,9 +5,10 @@ import { DebugElement } from '@angular/core';
 import { of } from 'rxjs';
 
 import { mockLstagemEnderecos } from 'src/app/test/mocks/listagem-enderecos.mock';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { ListagemService } from '../../services/lisagem.service';
-
 import { ListagemComponent } from './listagem.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ListagemComponent =>', () => {
 
@@ -18,6 +19,7 @@ describe('ListagemComponent =>', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [SharedModule, RouterTestingModule],
       declarations: [ListagemComponent],
       providers: [ListagemService]
     }).compileComponents();

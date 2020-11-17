@@ -1,3 +1,9 @@
+<app-botao-navegacao textoBotao="voltar"
+                     (navegar)="onNavegar()">
+</app-botao-navegacao>
+
+<br />
+
 <table>
   <thead>
     <tr>
@@ -8,9 +14,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let endereco of enderecos">
-      <td>{{ endereco.cep}}</td>
-      <td>{{ endereco.cidade}}</td>
-      <td>{{ endereco.logradouro}}</td>
+      <td>{{ endereco.cep }}</td>
+      <td>{{ endereco.cidade }}</td>
+      <td>{{ endereco.logradouro }}</td>
     </tr>
   </tbody>
 </table>
