@@ -4,9 +4,10 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { ListagemComponent } from 'src/app/modules/listagem/components/listagem/listagem.component';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { HomeComponent } from './home.component';
 
-describe('AppComponent', () => {
+describe('HomeComponent', () => {
 
   let router: Router;
 
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        SharedModule,
         RouterTestingModule.withRoutes([
           { path: 'listagem', component: ListagemComponent }
         ])
@@ -32,6 +34,8 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
 
     router = TestBed.get(Router);
+
+    jest.spyOn(router, 'navigate');
 
     fixture.detectChanges();
   });
@@ -50,17 +54,30 @@ describe('AppComponent', () => {
 
   describe('Ao clicar no botão navegar para listagem', () => {
 
-    beforeEach(() => {
-      jest.spyOn(router, 'navigate');
-    });
-
     it('Deve navegar para a página de listagem', () => {
       fixture.ngZone.run(() => {
 
         fixture.debugElement.query(By.css('#btnNavegarListagem'))
-          .triggerEventHandler('click', null);
+          .triggerEventHandler('navegar', null);
 
         expect(router.navigate).toHaveBeenCalledWith(['listagem']);
+        expect(router.navigate).toHaveBeenCalledTimes(1);
+
+      });
+
+    });
+
+  });
+
+  describe('Ao clicar no botão navegar para formulário', () => {
+
+    it('Deve navegar para a página de buscar CEP', () => {
+      fixture.ngZone.run(() => {
+
+        fixture.debugElement.query(By.css('#btnNavegarFormulario'))
+          .triggerEventHandler('navegar', null);
+
+        expect(router.navigate).toHaveBeenCalledWith(['buscador-cep']);
         expect(router.navigate).toHaveBeenCalledTimes(1);
 
       });

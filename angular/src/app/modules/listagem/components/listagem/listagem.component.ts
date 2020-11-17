@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 import { ListagemService } from '../../services/lisagem.service';
 
@@ -9,11 +10,16 @@ export class ListagemComponent
   private _enderecos: Array<Endereco> = [];
 
   constructor(
-    private listagemService: ListagemService
+    private listagemService: ListagemService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
     this.buscaEnderecos();
+  }
+
+  onNavegar(): void {
+    this.location.back();
   }
 
   private buscaEnderecos(): void {

@@ -1,6 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 import { ViaCepService } from '../../services/via-cep/via-cep.service';
 import { BuscadorCepComponent } from './buscador-cep.component';
@@ -14,7 +16,12 @@ describe('BuscadorCepComponent =>', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      imports: [
+        RouterTestingModule,
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        SharedModule
+      ],
       declarations: [BuscadorCepComponent],
       providers: [ViaCepService]
     }).compileComponents();
