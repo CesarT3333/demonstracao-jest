@@ -18,9 +18,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         SharedModule,
-        RouterTestingModule.withRoutes([
-          { path: 'listagem', component: ListagemComponent }
-        ])
+        RouterTestingModule
       ],
       declarations: [
         HomeComponent,
@@ -35,7 +33,7 @@ describe('HomeComponent', () => {
 
     router = TestBed.get(Router);
 
-    jest.spyOn(router, 'navigate');
+    jest.spyOn(router, 'navigate').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });
@@ -52,15 +50,18 @@ describe('HomeComponent', () => {
       .toContain('Welcome to angular!');
   });
 
-  describe('Ao clicar no botão navegar para listagem', () => {
+  describe('Ao clicar no botão navegar para formulário', () => {
 
-    it('Deve navegar para a página de listagem', () => {
+    it('Deve navegar para a página de buscar CEP', () => {
       fixture.ngZone.run(() => {
+        router.initialNavigation();
 
-        fixture.debugElement.query(By.css('#btnNavegarListagem'))
+        fixture.debugElement.query(By.css('#btnNavegarFormulario'))
           .triggerEventHandler('navegar', null);
 
-        expect(router.navigate).toHaveBeenCalledWith(['listagem']);
+        fixture.detectChanges();
+
+        expect(router.navigate).toHaveBeenCalledWith(['buscador-cep']);
         expect(router.navigate).toHaveBeenCalledTimes(1);
 
       });
@@ -69,15 +70,18 @@ describe('HomeComponent', () => {
 
   });
 
-  describe('Ao clicar no botão navegar para formulário', () => {
+  describe('Ao clicar no botão navegar para listagem', () => {
 
-    it('Deve navegar para a página de buscar CEP', () => {
+    it('Deve navegar para a página de listagem', () => {
       fixture.ngZone.run(() => {
+        router.initialNavigation();
 
-        fixture.debugElement.query(By.css('#btnNavegarFormulario'))
+        fixture.debugElement.query(By.css('#btnNavegarListagem'))
           .triggerEventHandler('navegar', null);
 
-        expect(router.navigate).toHaveBeenCalledWith(['buscador-cep']);
+        fixture.detectChanges();
+
+        expect(router.navigate).toHaveBeenCalledWith(['listagem']);
         expect(router.navigate).toHaveBeenCalledTimes(1);
 
       });

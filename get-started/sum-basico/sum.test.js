@@ -1,21 +1,25 @@
 const sum = require('./sum');
 
-describe('Dado que meus parametros são inválidos', () => {
+describe('sum', () => {
 
-  it('deve retornar erro de validação', () => {
+  describe('Dado que meus parametros são inválidos', () => {
 
-    const mensagemErroEsperada = 'parametros devem ser do tipo number';
+    it('deve retornar erro de validação', () => {
 
-    expect(() => sum('ddddd', 'asdasd2')).toThrow(mensagemErroEsperada);
-    expect(() => sum(null, '2')).toThrow(mensagemErroEsperada);
+      const mensagemErroEsperada = 'parametros devem ser do tipo number';
+
+      expect(() => sum('ddddd', 'asdasd2')).toThrow(mensagemErroEsperada);
+      expect(() => sum(null, '2')).toThrow(mensagemErroEsperada);
+
+    });
 
   });
 
-});
+  describe('Dado que meus parametros são válidos', () => {
 
-describe('Dado que meus parametros são válidos', () => {
+    it('deve somar 1 + 2 e resultar 3',
+      () => expect(sum(1, 2)).toBe(3));
 
-  it('deve somar 1 + 2 e resultar 3',
-    () => expect(sum(1, 2)).toBe(3));
+  });
 
 });

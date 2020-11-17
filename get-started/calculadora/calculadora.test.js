@@ -5,7 +5,6 @@ describe('Calculadora =>', () => {
   let calculadora;
 
   beforeEach(() => {
-    
     calculadora = new Calculadora();
   });
 

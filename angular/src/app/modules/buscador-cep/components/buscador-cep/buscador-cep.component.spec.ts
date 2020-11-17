@@ -1,10 +1,10 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 import { ViaCepService } from '../../services/via-cep/via-cep.service';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { BuscadorCepComponent } from './buscador-cep.component';
 
 describe('BuscadorCepComponent =>', () => {
