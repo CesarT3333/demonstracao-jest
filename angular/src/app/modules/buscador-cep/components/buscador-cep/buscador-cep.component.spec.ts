@@ -41,17 +41,23 @@ describe('BuscadorCepComponent =>', () => {
 
   describe('Dado que meu formulário é inválido', () => {
 
+    // Testa validações do formulário
     it('Deve conter erros de validação', () => {
       getCepFormControl().setValue('123');
       fixture.detectChanges();
 
       expect(component.formBuscadorCep.invalid).toBeTruthy();
+
+      // Garante que o erro 'minlength' exista se o valor exceder o mínimo informado
       expect(getCepFormControl().errors.minlength).toBeTruthy();
 
       getCepFormControl().setValue('9099999999999999');
       fixture.detectChanges();
 
+      // Garante que exista erros de validação
       expect(component.formBuscadorCep.invalid).toBeTruthy();
+
+      // Garante que o erro 'maxlengh' exista se o valor exceder o máximo informado
       expect(getCepFormControl().errors.maxlength).toBeTruthy();
 
     });
@@ -74,6 +80,7 @@ describe('BuscadorCepComponent =>', () => {
       component.onFormSubmit();
       fixture.detectChanges();
 
+      // Testa chamada do serviço caso o formulário esteja válido
       expect(viaCepService.buscaCep).toHaveBeenCalledWith('95013-000');
 
     });
