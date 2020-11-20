@@ -24,6 +24,7 @@ describe('BotaoNavegacaoComponent =>', () => {
   it('Deve criar o componente',
     () => expect(component).toBeTruthy());
 
+  // Testa se texto do botão é o mesmo texto passado via @Input no componente
   it('Deve exibir o texto informado no botão', () => {
     component.textoBotao = 'Navegar';
     fixture.detectChanges();
@@ -36,15 +37,18 @@ describe('BotaoNavegacaoComponent =>', () => {
   });
 
   it('Deve emitir o evento de navegação', () => {
+    // Mocka o event emit do EventEmitter do pacote @angular/core
     jest.spyOn(component.navegar, 'emit');
 
     getBotaoNavegacao().triggerEventHandler('click', null);
     fixture.detectChanges();
 
+    // Testa se o evento está sendo chamado após clicar no botão
     expect(component.navegar.emit).toHaveBeenCalled();
   });
 
   function getBotaoNavegacao(): DebugElement {
+    // Query necessária para buscar a tag <button> dentro do template
     return fixture.debugElement.query(By.css('button'));
   }
 

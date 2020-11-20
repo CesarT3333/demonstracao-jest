@@ -31,8 +31,11 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
 
+    // Recupera o router que está sendo provido pelo TestBed
     router = TestBed.get(Router);
 
+    // Mocka a implementadcão do método 'navigate' do router do angular
+    // Isso serve para o teste não navegar de verdade
     jest.spyOn(router, 'navigate').mockImplementation(jest.fn());
 
     fixture.detectChanges();
@@ -44,6 +47,7 @@ describe('HomeComponent', () => {
   it(`Deve conter o título 'angular'`, () =>
     expect(component.title).toEqual('angular'));
 
+  // Testa conteúdo de texto da tag h1 no html
   it('Deve renderizar tag <h1/>', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent)
@@ -53,18 +57,24 @@ describe('HomeComponent', () => {
   describe('Ao clicar no botão navegar para formulário', () => {
 
     it('Deve navegar para a página de buscar CEP', () => {
-      fixture.ngZone.run(() => {
-        router.initialNavigation();
 
-        fixture.debugElement.query(By.css('#btnNavegarFormulario'))
-          .triggerEventHandler('navegar', null);
+      /*
+        triggerEventHandler dispara eventos dos elementos target
+        da query.
 
-        fixture.detectChanges();
+        'navegar' é um evento criado dentro do componente de botão
 
-        expect(router.navigate).toHaveBeenCalledWith(['buscador-cep']);
-        expect(router.navigate).toHaveBeenCalledTimes(1);
+      */
+      fixture.debugElement.query(By.css('#btnNavegarFormulario'))
+        .triggerEventHandler('navegar', null);
 
-      });
+      fixture.detectChanges();
+
+      // Garante que o router.navigate está sendo chado com ['buscador-cep']
+      expect(router.navigate).toHaveBeenCalledWith(['buscador-cep']);
+
+      // Garante que o router.navigate está sendo chado uma vez apenas
+      expect(router.navigate).toHaveBeenCalledTimes(1);
 
     });
 
@@ -73,18 +83,14 @@ describe('HomeComponent', () => {
   describe('Ao clicar no botão navegar para listagem', () => {
 
     it('Deve navegar para a página de listagem', () => {
-      fixture.ngZone.run(() => {
-        router.initialNavigation();
 
-        fixture.debugElement.query(By.css('#btnNavegarListagem'))
-          .triggerEventHandler('navegar', null);
+      fixture.debugElement.query(By.css('#btnNavegarListagem'))
+        .triggerEventHandler('navegar', null);
 
-        fixture.detectChanges();
+      fixture.detectChanges();
 
-        expect(router.navigate).toHaveBeenCalledWith(['listagem']);
-        expect(router.navigate).toHaveBeenCalledTimes(1);
-
-      });
+      expect(router.navigate).toHaveBeenCalledWith(['listagem']);
+      expect(router.navigate).toHaveBeenCalledTimes(1);
 
     });
 

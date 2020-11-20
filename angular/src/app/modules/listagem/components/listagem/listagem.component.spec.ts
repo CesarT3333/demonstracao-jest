@@ -31,6 +31,7 @@ describe('ListagemComponent =>', () => {
 
     listagemServiceSpy = TestBed.get(ListagemService);
 
+    // Delega o método buscarEnderecos retornar uma listagem fake
     jest.spyOn(listagemServiceSpy, 'buscaEnderecos')
       .mockReturnValue(of(mockLstagemEnderecos));
 
@@ -47,12 +48,16 @@ describe('ListagemComponent =>', () => {
 
   it('Deve exibir os dados na listagem', () => {
 
+    // Busca linhas da tabela
     const linhasDaTabela = fixture.debugElement.queryAll(By.css('tr'));
+
+    // verifica se a quantidade de linhas bate com a quantidade de registros
     expect(linhasDaTabela).toHaveLength(4);
 
     const linha_1 = linhasDaTabela[0];
     const colunasLinha_1 = linha_1.queryAll(By.css('th'));
 
+    // Testa conteúdo dos títulos das colulas
     expect(getTextContent(colunasLinha_1[0])).toBe('CEP');
     expect(getTextContent(colunasLinha_1[1])).toBe('Cidade');
     expect(getTextContent(colunasLinha_1[2])).toBe('Logradouro');
@@ -60,6 +65,7 @@ describe('ListagemComponent =>', () => {
     const linha_2 = linhasDaTabela[1];
     const colunasLinha_2 = linha_2.queryAll(By.css('td'));
 
+    // Testa conteúdo dos interno das colunas
     expect(getTextContent(colunasLinha_2[0])).toBe('95012000');
     expect(getTextContent(colunasLinha_2[1])).toBe('Caxias do Sul');
     expect(getTextContent(colunasLinha_2[2])).toBe('Rua Júlio de castilhos');
