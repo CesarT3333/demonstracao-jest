@@ -82,7 +82,7 @@ describe('BuscadorCepComponent =>', () => {
 
 
   function getCepFormControl(): FormControl {
-    return <FormControl> component.formBuscadorCep.get('cep');
+    return <FormControl>component.formBuscadorCep.get('cep');
   }
 
 });
